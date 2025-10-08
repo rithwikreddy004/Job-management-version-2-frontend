@@ -78,7 +78,7 @@
 
 ## **Pages & Features**
 
-### **1. Job Creation Modal**
+### **1. Job Creation Model**
 
 * **High-Fidelity Form:** Implements all required fields: Job Title, Company Name, Location, Job Type, Salary Range (Min/Max), Application Deadline, and Job Description.
 * **Robust Validation:** Uses **React Hook Form** and **Zod** to validate all fields, including ensuring the **Application Deadline** is a valid future date.
