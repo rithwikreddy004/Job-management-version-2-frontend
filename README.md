@@ -16,6 +16,7 @@
 * [Setup](#setup)
 * [Pages & Features](#pages--features)
 * [Design Notes](#design-notes)
+* [Screenshots](#screenshots)
 * [Implementation Status](#implementation-status)
   
 
