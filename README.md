@@ -100,6 +100,20 @@
 
 ---
 
+## **Screenshots**
+
+![Home Page](#)#Home Page
+<img width="1891" height="907" alt="Screenshot 2025-10-08 222231" src="https://github.com/user-attachments/assets/53bf7a28-6b7f-4ce4-bf8e-a5b22f372425" />
+
+
+
+![Create Job Opening](#)#Create Job Opening
+<img width="1767" height="863" alt="Screenshot 2025-10-08 222307" src="https://github.com/user-attachments/assets/6b01d6a6-dfbf-4cbc-a387-f66d9766d151" />
+
+
+
+
+
 ## **Implementation Status**
 
 **✅ Completed**
