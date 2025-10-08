@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Deployment
 
-## Getting Started
+**Live App:** [https://jobmanagementadmin.vercel.app](https://job-management-version-2-frontend.vercel.app/)
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# Job Management Admin Interface
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Project:** A full-stack web application designed for administrators to create, manage, filter, and view job postings with real-time updates and pixel-perfect UI.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## **Table of Contents**
 
-## Learn More
+* [Tech Stack](#tech-stack)
+* [Setup](#setup)
+* [Pages & Features](#pages--features)
+* [Design Notes](#design-notes)
+* [Implementation Status](#implementation-status)
+  
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **Tech Stack**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* **Frontend:** **Next.js** (App Router), **React.js**, **Mantine** (UI Library), **React Hook Form**
+* **Backend:** **NestJS** (Node.js/TypeScript)
+* **Database:** **PostgreSQL** (Hosted on Render)
+* **ORM:** **Prisma ORM**
+* **Validation:** **Zod** (Client-side Form Validation)
+* **Deployment:** **Vercel** (Frontend) + **Render** (Backend & Database)
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## **Setup**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### **Setup (Run Locally)**
+
+1.  **Clone the repositories** (Frontend and Backend)
+    ```bash
+    git clone [Frontend_Repo_URL] my-job-admin
+    git clone [Backend_Repo_URL] my-job-backend
+    ```
+
+2.  **Install dependencies** in both directories:
+    ```bash
+    cd my-job-admin && npm install
+    cd ../my-job-backend && npm install
+    ```
+
+3.  **Environment Variables (Backend)**
+    Create a `.env` file in the `my-job-backend` directory for local development:
+    ```
+    # Replace with your local Postgres credentials
+    DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/DB_NAME"
+    ```
+
+4.  **Database Setup (Prisma)**
+    In the `my-job-backend` directory, apply the schema to your local PostgreSQL database:
+    ```bash
+    npx prisma migrate dev --name init
+    ```
+
+5.  **Run the application (Simultaneously)**
+    Start the backend server:
+    ```bash
+    cd my-job-backend
+    npm run start:dev
+    ```
+    Start the frontend server:
+    ```bash
+    cd my-job-admin
+    npm run dev
+    ```
+    Visit `http://localhost:3001` to see the app.
+
+---
+
+## **Pages & Features**
+
+### **1. Job Creation Modal**
+
+* **High-Fidelity Form:** Implements all required fields: Job Title, Company Name, Location, Job Type, Salary Range (Min/Max), Application Deadline, and Job Description.
+* **Robust Validation:** Uses **React Hook Form** and **Zod** to validate all fields, including ensuring the **Application Deadline** is a valid future date.
+* **Instant Submission:** Submits data via `POST /jobs` and automatically closes the modal and refreshes the dashboard upon success.
+
+### **2. Job List Dashboard – `/`**
+
+* **Real-time Listing:** Fetches and displays job postings from the live database.
+* **Dynamic Filtering:** Implements functional filtering that sends query parameters to the backend for **Job Title, Location, Job Type, and Salary Range**.
+* **Live Update:** Job list updates instantly when filters are changed and when a new job is created.
+
+---
+
+## **Design Notes**
+
+* **Figma Fidelity:** UI elements are a **pixel-perfect replica** of the provided Figma design, covering header, filter bar, and job card layouts.
+* **Responsiveness:** Implemented responsive design across the header and main content areas to ensure optimal viewing on mobile and desktop devices.
+* **Data Flow:** All data requests use the deployed **NestJS API**, with configuration handled via environment variables (`NEXT_PUBLIC_API_URL`).
+
+---
+
+## **Implementation Status**
+
+**✅ Completed**
+
+* Full-Stack CRUD functionality for Job Postings.
+* Database Schema definition and migration via Prisma ORM.
+* Full UI Cloning and Responsive Design.
+* Functional Dynamic Filtering for all required fields.
+* Automated state synchronization (no manual page reload required after submit).
